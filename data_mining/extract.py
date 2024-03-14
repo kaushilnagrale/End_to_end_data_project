@@ -24,10 +24,15 @@ class Browser:
 
     def open_url(self, url):
         self.driver.get(url)
-
-    def click(self,button_selector):
-        pass
-
+        
+    def click(self, button_selector):
+            # Wait for the button to be clickable
+             go_button = WebDriverWait(self.driver, 15).until(
+             EC.element_to_be_clickable((By.CSS_SELECTOR, button_selector))
+            )
+             
+    def insert_text(self):
+         pass
     def close_browser(self):
         self.driver.quit()
 
@@ -41,12 +46,16 @@ if __name__ == "__main__":
 
     # Open a URL
     browser.open_url("https://www.google.com/maps")
-
+    browser.driver.maximize_window()
     # Do Selenium operations like finding elements, clicking, etc.
-    time.sleep(10)
+    time.sleep(5)
+    # #searchbox-searchbutton > span
+    browser.click(button_selector="#searchbox-searchbutton > span")
+
+    time.sleep(5)
     # Close the browser when done
     browser.close_browser()
-
+    
 
 
 
