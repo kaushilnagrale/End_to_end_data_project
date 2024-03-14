@@ -27,9 +27,11 @@ class Browser:
         
     def click(self, button_selector):
             # Wait for the button to be clickable
-             go_button = WebDriverWait(self.driver, 15).until(
+            go_button = WebDriverWait(self.driver, 15).until(
              EC.element_to_be_clickable((By.CSS_SELECTOR, button_selector))
             )
+            # Click the button
+            go_button.click()
              
     def insert_text_by_id(self,textbox,text):
         #this method will put a respect text in the passed ID
@@ -55,6 +57,8 @@ if __name__ == "__main__":
     time.sleep(5)
     # #searchbox-searchbutton > span
     browser.insert_text_by_id("searchboxinput","test")
+    time.sleep(3)
+    browser.click("#searchbox-searchbutton")
 
     time.sleep(5)
     # Close the browser when done
