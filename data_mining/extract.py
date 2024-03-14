@@ -31,8 +31,12 @@ class Browser:
              EC.element_to_be_clickable((By.CSS_SELECTOR, button_selector))
             )
              
-    def insert_text(self):
-         pass
+    def insert_text_by_id(self,textbox,text):
+        #this method will put a respect text in the passed ID
+        location_element = self.driver.find_element(By.ID, textbox)
+        location_element.clear()  # Clear any existing value
+        location_element.send_keys(text) #searchboxinput
+        
     def close_browser(self):
         self.driver.quit()
 
@@ -50,7 +54,7 @@ if __name__ == "__main__":
     # Do Selenium operations like finding elements, clicking, etc.
     time.sleep(5)
     # #searchbox-searchbutton > span
-    browser.click(button_selector="#searchbox-searchbutton > span")
+    browser.insert_text_by_id("searchboxinput","test")
 
     time.sleep(5)
     # Close the browser when done
